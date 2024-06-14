@@ -6,17 +6,25 @@
 
 ---
 ### Project Structure
-* GKX
-	* core: web-scrap
-	* uix: windows/dialogs
-		* main
-		* settings
-	* utils: simple common functions
-	* resources:
-		* ui
-		* icons
-		* config
+GKX
+├── gkx
+│   ├── core
+│   ├── resources
+│   │   ├── config
+│   │   ├── icons
+│   │   ├── img
+│   │   └── ui
+│   └── utils
 
 ---
-### Design
+### Global Structure
 ![global-structure](resources/img/gxk.svg) 
+
+
+---
+###Progress
+- [ ] Scrapper (get search results, get item preview)
+- [ ] Scrapper (download)
+- [ ] Search results handler (organizing, filttering, ...)
+- [ ] Settings Core
+- [ ] Build GUI
