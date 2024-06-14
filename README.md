@@ -6,16 +6,17 @@
 
 ---
 ### Project Structure
-GKX
-├── gkx
-│   ├── core
-│   ├── resources
-│   │   ├── config
-│   │   ├── icons
-│   │   ├── img
-│   │   └── ui
-│   ├── windows
-│   └── utils
+GKX  
+├── gkx  
+│   ├── core  
+│   ├── resources  
+│   │   ├── config  
+│   │   ├── icons  
+│   │   ├── img  
+│   │   └── ui  
+│   ├── windows  
+│   └── utils  
+
 
 ---
 ### Global Structure
