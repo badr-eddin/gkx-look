@@ -18,7 +18,7 @@ GKX
 
 ---
 ### Global Structure
-![global-structure](resources/img/gxk.svg) 
+![global-structure](gkx/resources/img/gxk.svg) 
 
 
 ---
