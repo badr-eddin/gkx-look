@@ -37,3 +37,4 @@ GKX
 - [ ] return ResultsManger from search instead of pandas.DataFrame
 - [ ] check if pandas presents filtering functionality
 - [ ] convert 'last-update' to datetime
+- [ ] implement settings !important
