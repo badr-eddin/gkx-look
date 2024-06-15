@@ -34,7 +34,7 @@ GKX
 
 
 ### Todo
-- [ ] return ResultsManger from search instead of pandas.DataFrame
-- [ ] check if pandas presents filtering functionality
-- [ ] convert 'last-update' to datetime
+- [X] return ResultsManger from search instead of pandas.DataFrame
+- [X] check if pandas presents filtering functionality
+- [X] convert 'last-update' to datetime
 - [ ] implement settings !important
