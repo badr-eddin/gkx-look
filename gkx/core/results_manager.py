@@ -28,6 +28,34 @@ class ResultsManager:
 				data = data.sort_values(by=filter_s)
 		
 		return data
+
+	def filter_by_word(self, words: str, case_sens=False, field="title"):
+		words = (words if case_sens else words.lower()).split(";")
+		data = self.retrieve()
+
+		def containts_words(text, ws):
+			return any(w in (text if case_sens else text.lower()) for w in ws)
+		
+		data = data[data[field].apply(lambda x: containts_words(x, words))]
+
+		return data
+
+	def filter_by_category(self, cats):
+		return self.filter_by_word(cats, False, "category")
+
+	def filter_by_time(self, t1, t2):
+		pass
+
+	def filter_by_score(self, s1, s2):
+		if not isinstance(s1, (float, int)):
+			return
+		
+		if not isinstance(s2, (float, int)):
+			return
+
+		data = self.retrieve()
+		data = data[(data["score"] >= s1) & (data["score"] <= s2)]
+		return data
 	
 	def retrieve(self):
 		return pd.DataFrame(self.__results)

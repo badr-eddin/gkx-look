@@ -26,8 +26,8 @@ GKX
 ---
 ### Milestones
 - [X] Scrapper (get search results, get item preview)
-- [ ] Scrapper (download)
-- [ ] Search results handler (organizing, filttering, ...)
+- [X] Scrapper (download)
+- [X] Search results handler (organizing, filttering, ...)
 - [ ] Settings Core
 - [ ] Build GUI
 - [ ] Implement errors handling system
@@ -38,3 +38,4 @@ GKX
 - [X] check if pandas presents filtering functionality
 - [X] convert 'last-update' to datetime
 - [ ] implement settings !important
+- [ ] filter categories (supported only)

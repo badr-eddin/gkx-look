@@ -106,7 +106,7 @@ class Scrapper:
 				"category": category,
 				"publisher": publisher,
 				"id": item_id,
-				"score": rate,
+				"score": float(rate),
 				"time": update,
 				"datetime": get_time(update),
 				"preview": preview_img
