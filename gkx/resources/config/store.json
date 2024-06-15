@@ -1,0 +1,20 @@
+{
+    "categories": [
+
+    ],
+    "classes": {
+        "preview": {
+            "tag": "img",
+            "cls": "explore-product-image"
+        },
+        "item": {
+            "tag": "h3",
+            "cls": "explore-product"
+        }
+    },
+    "export": {
+        "formats": {
+            "csv": "to_csv"
+        }
+    }
+}

@@ -6,6 +6,8 @@ import urllib.parse as parse_url
 from bs4 import BeautifulSoup
 import re
 import pandas as pd
+from ..utils import get_time, format_tag_text
+from .results_manager import ResultsManager
 
 import os
 
@@ -73,7 +75,7 @@ class Scrapper:
 		url = self.url_query(str(self.__query), p=page)
 		content = self.get_pages_content(url)
 		bs4 = BeautifulSoup(content, features="lxml")
-		data = []
+		data = ResultsManager()
 
 		items = bs4.find_all("div", class_="explore-product")
 
@@ -91,24 +93,24 @@ class Scrapper:
 			category = category[0].find_all_next("b")[0]
 			preview_img = item.find_all_next("img", class_="explore-product-image")
 
-			item_id = title["href"].strip("/").split("/")[-1]
-			title = title.text.replace("\n", "")
-			publisher = publisher[0].text.replace("\n", "")
-			update = update[0].text.replace("\n", "")
-			rate = rate[0].text.replace("\n", "")
-			category = category.text.replace("\n", "")
-			preview_img = preview_img[0]["src"].replace("\n", "")
+			item_id = format_tag_text(title["href"]).strip("/").split("/")[-1]
+			title = format_tag_text(title.text)
+			publisher = format_tag_text(publisher[0].text)
+			update = format_tag_text( update[0].text)
+			rate = format_tag_text(rate[0].text)
+			category = format_tag_text(category.text)
+			preview_img = format_tag_text(preview_img[0]["src"])
 
-			data.append({
+			data.add_data({
 				"title": title,
 				"category": category,
 				"publisher": publisher,
 				"id": item_id,
-				"rate": rate,
-				"last-update": update,
+				"score": rate,
+				"time": update,
+				"datetime": get_time(update),
 				"preview": preview_img
 			})
-		data = pd.DataFrame(data)
 		return data
 
 	def get_download_links(self, pid):
