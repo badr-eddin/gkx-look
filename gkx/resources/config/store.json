@@ -2,14 +2,37 @@
     "categories": [
 
     ],
-    "classes": {
+    "html": {
+        "pages": {
+            "name": "ul",
+            "class_": "pagination"
+        },
+        "pub": {
+            "name": "a",
+            "class_": "tooltipuser"
+        },
+        "time": {
+            "name": "div",
+            "class_": "collected"
+        },
+        "score": {
+            "name": "div",
+            "class_": "kkSWyw"
+        },
+        "cat": {
+            "name": "div",
+            "class_": "title"
+        },
         "preview": {
-            "tag": "img",
-            "cls": "explore-product-image"
+            "name": "img",
+            "class_": "explore-product-image"
         },
         "item": {
-            "tag": "h3",
-            "cls": "explore-product"
+            "name": "div",
+            "class_": "explore-product"
+        },
+        "title": {
+            "name": "h3"
         }
     },
     "export": {

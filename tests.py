@@ -1,5 +1,5 @@
 from gkx.core import Scrapper
-from gkx.utils import get_time
+from gkx.utils import get_time, config, settings
 
 
 scp = Scrapper()

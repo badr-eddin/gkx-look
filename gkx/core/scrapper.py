@@ -6,7 +6,7 @@ import urllib.parse as parse_url
 from bs4 import BeautifulSoup
 import re
 import pandas as pd
-from ..utils import get_time, format_tag_text
+from ..utils import get_time, format_tag_text, config
 from .results_manager import ResultsManager
 
 import os
@@ -30,7 +30,8 @@ class Scrapper:
 
 	def get_pages_number(self, page):
 		bs4 = BeautifulSoup(page, features="lxml")
-		pages = bs4.find_all("ul", class_="pagination")[0].findAllNext("li")
+		pages = bs4.find_all(**config.pull("html/pages"))[0].find_all_next("li")
+
 		pages_num = []
 
 		for page in pages:
@@ -66,9 +67,9 @@ class Scrapper:
 	def scrap_page(self, page: int):
 		# todo: check if item category is supported or not
 		# todo: read classes used in bs4 from inner-config
-
 		if page > self.__pages_num or self.__pages_num <= 0:
 			return
+		
 		if not self.__query:
 			return
 
@@ -77,21 +78,21 @@ class Scrapper:
 		bs4 = BeautifulSoup(content, features="lxml")
 		data = ResultsManager()
 
-		items = bs4.find_all("div", class_="explore-product")
-
+		items = bs4.find_all(**config.pull("html/item"))
+		print(config.pull("html/item"))
 		for item in items:
-			title = item.find_all_next("h3")[0]
-			title = title.find_all_next("a")[0]
+			title = item.find_all_next(**config.pull("html/title"))[0]
+			title = title.find_all_next("b")[0]
 
 			if not title:
 				continue
 
-			publisher = item.find_all_next("a", class_="tooltip""user")
-			update = item.find_all_next("div", class_="collected")
-			rate = item.find_all_next("div", class_="kkSWyw")
-			category = item.find_all_next("div", class_="title")
+			publisher = item.find_all_next(**config.pull("html/pub"))
+			update = item.find_all_next(**config.pull("html/time"))
+			rate = item.find_all_next(**config.pull("html/score"))
+			category = item.find_all_next(**config.pull("html/cat"))
 			category = category[0].find_all_next("b")[0]
-			preview_img = item.find_all_next("img", class_="explore-product-image")
+			preview_img = item.find_all_next(**config.pull("html/preview"))
 
 			item_id = format_tag_text(title["href"]).strip("/").split("/")[-1]
 			title = format_tag_text(title.text)
@@ -134,4 +135,5 @@ class Scrapper:
 	def get_preview(self, url: str):
 		content = self.get_pages_content(url)
 		return content
+	
 
