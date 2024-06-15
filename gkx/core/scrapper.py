@@ -79,10 +79,9 @@ class Scrapper:
 		data = ResultsManager()
 
 		items = bs4.find_all(**config.pull("html/item"))
-		print(config.pull("html/item"))
 		for item in items:
 			title = item.find_all_next(**config.pull("html/title"))[0]
-			title = title.find_all_next("b")[0]
+			title = title.find_all_next(**config.pull("html/id"))[0]
 
 			if not title:
 				continue
@@ -91,7 +90,7 @@ class Scrapper:
 			update = item.find_all_next(**config.pull("html/time"))
 			rate = item.find_all_next(**config.pull("html/score"))
 			category = item.find_all_next(**config.pull("html/cat"))
-			category = category[0].find_all_next("b")[0]
+			category = category[0].find_all_next(**config.pull("html/cat_sub"))[0]
 			preview_img = item.find_all_next(**config.pull("html/preview"))
 
 			item_id = format_tag_text(title["href"]).strip("/").split("/")[-1]
