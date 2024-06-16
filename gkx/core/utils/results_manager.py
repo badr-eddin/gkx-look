@@ -1,5 +1,7 @@
 import pandas as pd
 
+__all__ = ["ResultsManager"]
+
 
 class ResultsManager(pd.DataFrame):
     @property
@@ -45,7 +47,7 @@ class ResultsManager(pd.DataFrame):
 
     def filter_by_time(self, t1, t2):
         """
-        time of: Year-Month-Day
+        time: Year-Month-Day
         """
         if pd.api.types.is_datetime64_any_dtype(self['datetime']):
             return self[(self['datetime'] >= t1) & (self['datetime'] <= t2)]
@@ -58,12 +60,12 @@ class ResultsManager(pd.DataFrame):
 
         return self[(self["score"] >= s1) & (self["score"] <= s2)]
 
-    def export(self, to="csv", file_name="export.csv"):
+    def export(self, to="csv", file_name="export"):
         if to == "csv":
-            self.to_csv(file_name, index=False)
+            self.to_csv(file_name + ".csv", index=False)
         elif to == "json":
-            self.to_json(file_name, orient='records')
+            self.to_json(file_name + ".json", orient='records')
         elif to == "excel":
-            self.to_excel(file_name, index=False)
+            self.to_excel(file_name + ".xlsx", index=False)
         else:
             raise ValueError("Unsupported export format. Use 'csv', 'json', or 'excel'.")

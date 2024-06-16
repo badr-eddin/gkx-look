@@ -1,2 +1,2 @@
-from .scrapper import Scrapper
-from .results_manager import ResultsManager
+from .utils import *
+from .web import Scrapper
