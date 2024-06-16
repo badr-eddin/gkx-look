@@ -39,3 +39,9 @@ GKX
 - [X] convert 'last-update' to datetime
 - [ ] implement settings !important
 - [ ] filter categories (supported only)
+
+
+--- Run Tests
+```sh
+python3 -i tests.py
+```

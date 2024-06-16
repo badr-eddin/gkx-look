@@ -1,5 +1,6 @@
 # managing http requests
 import requests
+import wget
 import urllib.parse as parse_url
 
 # html analysing
@@ -9,7 +10,7 @@ import pandas as pd
 from ..utils import get_time, format_tag_text, config
 from .results_manager import ResultsManager
 
-import os
+import json
 
 class Scrapper:
 	def __init__(self):
@@ -46,9 +47,10 @@ class Scrapper:
                         "http": "http://192.168.43.208:7071",
                         "https": "https://192.168.43.208:7071"
                 }  # settings
-
-		# response = requests.get(url) #, proxies=proxies)
-		return open("test.html").read() # response if obj else response.content
+		print(url)
+		response = requests.get(url) #, proxies=proxies)
+		# open("test.html").read()
+		return response if obj else response.content
 
 	def search(self, query: str):
 		"""
@@ -72,11 +74,11 @@ class Scrapper:
 		
 		if not self.__query:
 			return
-
+		cols = ["title", "category", "publisher", "id", "score", "time", "datetime", "preview"]
 		url = self.url_query(str(self.__query), p=page)
 		content = self.get_pages_content(url)
 		bs4 = BeautifulSoup(content, features="lxml")
-		data = ResultsManager()
+		data = ResultsManager(columns=cols)
 
 		items = bs4.find_all(**config.pull("html/item"))
 		for item in items:
@@ -101,38 +103,36 @@ class Scrapper:
 			category = format_tag_text(category.text)
 			preview_img = format_tag_text(preview_img[0]["src"])
 
-			data.add_data({
-				"title": title,
-				"category": category,
-				"publisher": publisher,
-				"id": item_id,
-				"score": float(rate),
-				"time": update,
-				"datetime": get_time(update),
-				"preview": preview_img
-			})
+			data.add_data(
+				[title, category, publisher, item_id, 
+	 			float(rate), update, get_time(update), preview_img])
 		return data
 
 	def get_download_links(self, pid):
-		url = f"{self.src_url}/p/{pid}"
+		url = f"{self.src_url}/p/{pid}/loadFiles"
 		js_files = self.get_pages_content(url, True).json()
 		files = []
-
-		for file in js_files:
+		
+		for file in js_files.get("files") or []:
 			files.append({
 				"size": file.get("size"),
 				"url": parse_url.unquote(file.get("url") or ""),
-				"active": file.get("active")
+				"active": file.get("active"),
+				"id": file.get("id") or "0"
 			})
 		data_frame = pd.DataFrame(files)
 
 		return data_frame
 
-	def download(self, url: str):
-		pass  # todo: use old Predator download manager
+	def download(self, url: str, filename: str, manager=wget, callback=None):
+		if not manager:
+			raise ValueError("download manager not provided!")
+
+		if not callable(callback):
+			callback = None
+
+		return manager.download(url, filename, callback)
 
 	def get_preview(self, url: str):
 		content = self.get_pages_content(url)
 		return content
-	
-

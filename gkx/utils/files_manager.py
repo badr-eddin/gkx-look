@@ -1,9 +1,14 @@
+import io
 
 
+__all__ = ["FileObject"]
 
-class FileObject:
-	def __init__(self):
-		self.__path = ""
+
+class FileObject(io.BytesIO):
+	def __init__(self, path=""):
+		super().__init__()
+
+		self.__path = path
 
 	@property
 	def path(self):

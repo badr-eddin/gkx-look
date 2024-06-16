@@ -23,5 +23,4 @@ def get_time(time_str):
             elif unit.startswith("hour"):
                 return now - timedelta(hours=num)
 
-        return datetime.strptime(time_str, "%b %d %Y")
-
+    return datetime.strptime(time_str, "%b %d %Y")

@@ -1,7 +1,16 @@
 {
-    "categories": [
-
-    ],
+    "categories": {
+        "GTK3/4 Themes": "$HOME/.themes",
+        "Plank Themes": "$HOME/.local/share/plank/themes",
+        "Icon Themes": "$HOME/.icons",
+        "Cursor Themes": "$HOME/.icons",
+        "GNOME Shell Themes": "$HOME/.themes",
+        "Cinnamon Themes": "$HOME/.themes",
+        "XFCE/XFWM4 Themes": "$HOME/.themes",
+        "KDE Plasma Themes": "$HOME/.local/share/plasma/desktoptheme",
+        "LXQt Themes": "$HOME/.local/share/lxqt/themes",
+        "Wallpapers": "$HOME/Pictures/Wallpapers"
+    },
     "html": {
         "pages": {
             "name": "ul",

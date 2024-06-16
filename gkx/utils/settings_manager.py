@@ -20,7 +20,7 @@ class settings:
 
 	def read_field(self, key: str):
 		pass
-
+ 
 	def write_field(self, key: str, value: str | int | float | bool):
 		pass
 
