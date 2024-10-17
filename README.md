@@ -6,9 +6,7 @@
 
 it could work for other desktop environments (I really do not know)
 
-
-
-**No docuentation, just read the damn code**
+**No documentation, just read the damn code**
 
 ---
 
