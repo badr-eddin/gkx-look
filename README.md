@@ -1,11 +1,19 @@
-# Gnome-KDE-XFCE Look
+# Gnome-KDE-XFCE Look (Web Scrapping)
+
+*Note: I am sure that the backend is completed , it could be used as a library. I was wanted to build A UI for it but now I got better ideas and kind of busy, so maybe in the future*
+
+it could work for other desktop environments (I really do not know)
 
 ---
+
 ### Resources
+
 [pling.com](pling.com)
 
 ---
+
 ### Project Structure
+
 GKX  
 ├── gkx  
 │   ├── core  
@@ -15,33 +23,23 @@ GKX
 │   │   ├── img  
 │   │   └── ui  
 │   ├── windows  
-│   └── utils  
-
-
----
-### Global Structure
-![global-structure](gkx/resources/img/gxk.svg) 
-
+│   └── utils  ###
 
 ---
+
 ### Milestones
-- [X] Scrapper (get search results, get item preview)
-- [X] Scrapper (download)
-- [X] Search results handler (organizing, filttering, ...)
+
+- [x] Scrapper (get search results, get item preview)
+- [x] Scrapper (download)
+- [x] Search results handler (organizing, filttering, ...)
 - [ ] Settings Core
 - [ ] Build GUI
 - [ ] Implement errors handling system
 
-
 ### Todo
-- [X] return ResultsManger from search instead of pandas.DataFrame
-- [X] check if pandas presents filtering functionality
-- [X] convert 'last-update' to datetime
+
+- [x] return ResultsManger from search instead of pandas.DataFrame
+- [x] check if pandas presents filtering functionality
+- [x] convert 'last-update' to datetime
 - [ ] implement settings !important
 - [ ] filter categories (supported only)
-
-
---- Run Tests
-```sh
-python3 -i tests.py
-```
