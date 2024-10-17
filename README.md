@@ -1,8 +1,14 @@
 # Gnome-KDE-XFCE Look (Web Scrapping)
 
-*Note: I am sure that the backend is completed , it could be used as a library. I was wanted to build A UI for it but now I got better ideas and kind of busy, so maybe in the future*
+### Another uncompleted project
+
+*Note: I am sure that the backend is completed , it could be used as a library. I wanted to build A GUI for it but now I got better projects ideas and kind of busy, so maybe in the future*
 
 it could work for other desktop environments (I really do not know)
+
+
+
+**No docuentation, just read the damn code**
 
 ---
 
@@ -23,7 +29,7 @@ GKX
 │   │   ├── img  
 │   │   └── ui  
 │   ├── windows  
-│   └── utils  ###
+│   └── utils
 
 ---
 
